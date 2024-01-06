@@ -3,44 +3,52 @@
 #include <stdio.h>
 %}
 
-%token IF ELSE WHILE NUMBER VARIABLE
-%token PLUS MINUS TIMES DIVIDE
-%token EQUAL LESS GREATER AND OR
-%token OPEN_PAREN CLOSE_PAREN OPEN_BRACE CLOSE_BRACE SEMICOLON
+%token IF ELSE WHILE FOR INT ID
+%token '+' '-' '*' '/'
+%token '==' '<' '>' '&&' '||' '!' '<=' '>=' '!='
+%token '(' ')' '{' '}' ';'
 
 %%
 
-expressao_condicional : IF OPEN_PAREN expressao_booleana CLOSE_PAREN bloco
-                    | IF OPEN_PAREN expressao_booleana CLOSE_PAREN bloco ELSE bloco
-                    | IF OPEN_PAREN expressao_booleana CLOSE_PAREN bloco ELSE IF OPEN_PAREN expressao_booleana CLOSE_PAREN bloco
-                    | IF OPEN_PAREN expressao_booleana CLOSE_PAREN bloco ELSE IF OPEN_PAREN expressao_booleana CLOSE_PAREN bloco ELSE bloco
+expressao_condicional : IF '(' expressao_booleana ')' bloco
+                    | IF '(' expressao_booleana ')' bloco ELSE bloco
+                    | IF '(' expressao_booleana ')' bloco ELSE IF '(' expressao_booleana ')' bloco
+                    | IF '(' expressao_booleana ')' bloco ELSE IF '(' expressao_booleana ')' bloco ELSE bloco
                     ;
 
+expressao_incondicional : WHILE '(' expressao_booleana ')' bloco
+                         | FOR '(' expressao_aritmetica ';' expressao_booleana ';' expressao_aritmetica ')' bloco
+                         ;
+
 expressao_booleana : expressao_relacional
-                  | expressao_booleana AND expressao_relacional
-                  | expressao_booleana OR expressao_relacional
+                  | expressao_booleana '&&' expressao_relacional
+                  | expressao_booleana '||' expressao_relacional
                   ;
 
 expressao_relacional : expressao_aritmetica
-                   | expressao_aritmetica EQUAL expressao_aritmetica
-                   | expressao_aritmetica LESS expressao_aritmetica
-                   | expressao_aritmetica GREATER expressao_aritmetica
+                   | expressao_aritmetica '==' expressao_aritmetica
+                   | expressao_aritmetica '<' expressao_aritmetica
+                   | expressao_aritmetica '>' expressao_aritmetica
+                   | expressao_aritmetica '<=' expressao_aritmetica
+                   | expressao_aritmetica '>=' expressao_aritmetica
+                   | expressao_aritmetica '!' expressao_aritmetica
+                   | expressao_aritmetica '!=' expressao_aritmetica
                    ;
 
 expressao_aritmetica : termo
-                   | expressao_aritmetica PLUS termo
-                   | expressao_aritmetica MINUS termo
-                   | expressao_aritmetica TIMES termo
-                   | expressao_aritmetica DIVIDE termo
+                   | expressao_aritmetica '+' termo
+                   | expressao_aritmetica '-' termo
+                   | expressao_aritmetica '*' termo
+                   | expressao_aritmetica '/' termo
                    ;
 
-termo : NUMBER
-     | VARIABLE
-     | OPEN_PAREN expressao_aritmetica CLOSE_PAREN
+termo : INT
+     | ID
+     | '(' expressao_aritmetica ')'
      ;
 
-bloco : OPEN_BRACE comandos CLOSE_BRACE
-      | SEMICOLON
+bloco : '{' comandos '}'
+      | ';'
       ;
 
 comandos : comando
@@ -48,7 +56,7 @@ comandos : comando
          ;
 
 comando : expressao_condicional
-        | expressao_aritmetica SEMICOLON
+        | expressao_aritmetica ';'
         ;
 
 %%
