@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include 'muxtelaBison.tab.h'
 
 #define INT 256
 #define IF 257
