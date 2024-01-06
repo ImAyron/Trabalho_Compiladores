@@ -37,20 +37,19 @@ LETTER    [a-zA-Z]
 "se_mux"                 { printf("Palavra chave 'if'\n"); return IF; }
 "senao_mux"               { printf("Palavra chave 'else'\n"); return ELSE; }
 "enquanto_mux"              { printf("Palavra chave 'while'\n"); return WHILE; }
-"faz_mux"                 { printf("Palavra chave 'do'\n"); return DO; }
 "para_mux"                { printf("Palavra chave 'for'\n"); return FOR; }
 "{"                  { printf("Chave de abertura\n"); return '{'; }
 "}"                  { printf("Chave de fechamento\n"); return '}'; }
 ";"                  { printf("Ponto e vírgula\n"); return ';'; }
 ">"					 { printf("Sinal de maior\n"); return '>'; }
 "<"                  { printf("Sinal de menor\n"); return '<'; }
-">="                 { printf("Sinal de maior ou igual\n"); return 0; }
-"<="                 { printf("Sinal de menor ou igual\n"); return 0; }
-"=="                 { printf("Sinal de igual\n"); return 0; }
-"!="                 { printf("Sinal de diferente\n"); return 0; }
-"||"                 { printf("Operador lógico 'ou'\n"); return 0; }
-"&&"                 { printf("Operador lógico 'e'\n"); return 0; }
-"!"                  { printf("Operador lógico 'não'\n"); return 0; }
+">="                 { printf("Sinal de maior ou igual\n"); return '>='; }
+"<="                 { printf("Sinal de menor ou igual\n"); return '<='; }
+"=="                 { printf("Sinal de igual\n"); return '=='; }
+"!="                 { printf("Sinal de diferente\n"); return '!='; }
+"||"                 { printf("Operador lógico 'ou'\n"); return '||'; }
+"&&"                 { printf("Operador lógico 'e'\n"); return '&&'; }
+"!"                  { printf("Operador lógico 'não'\n"); return '!'; }
 "+"         { printf("Operador de adição\n"); return '+'; }
 "-"         { printf("Operador de subtração\n"); return '-'; }
 "*"         { printf("Operador de multiplicação\n"); return '*'; }
