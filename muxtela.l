@@ -44,6 +44,13 @@ LETTER    [a-zA-Z]
 ";"                  { printf("Ponto e vírgula\n"); return ';'; }
 ">"					 { printf("Sinal de maior\n"); return '>'; }
 "<"                  { printf("Sinal de menor\n"); return '<'; }
+">="                 { printf("Sinal de maior ou igual\n"); return 0; }
+"<="                 { printf("Sinal de menor ou igual\n"); return 0; }
+"=="                 { printf("Sinal de igual\n"); return 0; }
+"!="                 { printf("Sinal de diferente\n"); return 0; }
+"||"                 { printf("Operador lógico 'ou'\n"); return 0; }
+"&&"                 { printf("Operador lógico 'e'\n"); return 0; }
+"!"                  { printf("Operador lógico 'não'\n"); return 0; }
 "+"         { printf("Operador de adição\n"); return '+'; }
 "-"         { printf("Operador de subtração\n"); return '-'; }
 "*"         { printf("Operador de multiplicação\n"); return '*'; }
